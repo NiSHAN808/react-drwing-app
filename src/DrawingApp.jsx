@@ -11,14 +11,18 @@ function DrawingApp() {
         const x = canvasRef.current;
         let ctx = x.getContext("2d");
         const { offsetX, offsetY } = e.nativeEvent;
-        console.log(offsetX, offsetY);
         //let cordinate={x.}
         ctx.lineTo(offsetX, offsetY);
         ctx.stroke();
        }
     }
-    function setDown(){
-        setdrawingState(true);
+    function setDown(e){
+        setdrawingState(true)
+        const x = canvasRef.current;
+        let ctx = x.getContext("2d");
+        const { offsetX, offsetY } = e.nativeEvent;
+        ctx.moveTo(offsetX, offsetY);
+        console.log("stroke");
     }
     function setUp(){
         setdrawingState(false);
