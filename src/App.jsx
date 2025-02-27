@@ -1,4 +1,5 @@
-import DrawingPage from './DrawingPage'
+
+import ColorPlate from './ColorPalate'
 
 import './App.css'
 
@@ -7,10 +8,10 @@ function App() {
 
   return (
     <>
-    <DrawingPage/>
-    
-  
-      
+      <ColorPlate />
+
+
+
     </>
   )
 }
