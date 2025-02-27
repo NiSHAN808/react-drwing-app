@@ -1,12 +1,13 @@
-import React, { useState, useRef,useContext } from "react";
-import{ MyContext} from './ColorPalate';
-function DrawingApp() {
+import React, { useState, useRef, } from "react";
+
+function DrawingApp({selectedColor}) {
+    console.log("app = "+ selectedColor);
     let canvasRef = useRef(null);
     let [drawingStatus, setdrawingState] = useState(false);
     //let ctx=x.getContext("2d");
     //canvas[0].addEventListener("onMouseMove",setdrawing);
 
-   let col=useContext(MyContext);
+  // let col=useContext(MyContext);
 
     function setdrawing(e) {
        if(drawingStatus===true){
@@ -25,7 +26,7 @@ function DrawingApp() {
         let ctx = x.getContext("2d");
         const { offsetX, offsetY } = e.nativeEvent;
        // let col=useContext(MyContext);
-      ctx.strokeStyle = col;
+      ctx.strokeStyle = selectedColor;
         ctx.moveTo(offsetX, offsetY);
         console.log("stroke");
     }
