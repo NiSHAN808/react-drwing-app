@@ -1,27 +1,21 @@
-import React, { useState, createContext, lazy } from "react";
-import DrawingApp from "./DrawingApp";
-export const MyContext = createContext();
-function ColorPlate() {
-    const containerStyle = {
-        height: 44,
-        width: 44,
-        borderRadius: 10,
-        marginBottom: 2,
-        border: '3px solid #d3c8574a',
-        boxShadow: 'inset 0px 0px 4px 3px #0000004a',
-    };
+import React, { useState, lazy, useEffect } from "react";
+
+
+function ColorPlate({colors,setColors, setSelectedColor}) {
+ 
     let [lastClick,setLastClick]=useState(0);
-    let [colors, setColors] = useState(["#41644A", "#E53888", "#443627", "#27445D", "#497D74"]);
-    //let x=colors[0];
-    let [x, setX] = useState(colors[0]);
+
+
+    
+   
     function handleColorClick(e, index) {
         console.log(lastClick);
       
-           // document.getElementsByClassName('col')[lastClick].style.border="none";
+           
         
         e.target.style.border = '3px solid #d3c8574a';
 
-        setX(colors[index]);
+        setSelectedColor(colors[index]);
         setLastClick(index);
     }
 
@@ -51,9 +45,7 @@ function ColorPlate() {
                 </div>)}
 
             </div>
-            <MyContext.Provider value={x}>
-                <DrawingApp />
-            </MyContext.Provider>
+      
         </>
     );
 }
