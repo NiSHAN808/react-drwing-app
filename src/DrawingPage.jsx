@@ -8,8 +8,8 @@ let [selectedColor, setSelectedColor] = useState(colors[0]);
 
 return(
     <>
-    <ColorPlate colors={colors} setSelectedColor={setSelectedColor}  />
-<h1>{selectedColor}</h1>
+    <ColorPlate colors={colors} setColors={setColors} setSelectedColor={setSelectedColor}  />
+
     <DrawingApp selectedColor={selectedColor} />
     </>
 )

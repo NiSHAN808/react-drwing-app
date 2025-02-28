@@ -4,7 +4,7 @@ import React, { useState, lazy, useEffect } from "react";
 function ColorPlate({ colors, setColors, setSelectedColor }) {
 
     let [lastClick, setLastClick] = useState(0);
-
+   
 
 
     function handleColorClick(e, index) {
@@ -22,11 +22,11 @@ function ColorPlate({ colors, setColors, setSelectedColor }) {
             <div className="color-palate">
                 {colors.map((color, index) => <div className="col" key={index} style={lastClick === index ? {
                     background: color,
-                    height: "50px",
-                    width: "50px",
+                    height: "45px",
+                    width: "45px",
                     borderRadius: "10px",
                     marginBottom: "2px",
-                    border: "3px solid #d3c8574a",
+                    border: "4px solid rgba(255, 255, 255, 0.45)",
 
                 } : {
                     background: color,
