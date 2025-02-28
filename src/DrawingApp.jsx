@@ -1,13 +1,13 @@
 import React, { useState, useRef, } from "react";
 
-function DrawingApp({ selectedColor }) {
-    console.log("app = " + selectedColor);
+function DrawingApp({ selectedColor, strokeSize }) {
+
     let canvasRef = useRef(null);
     let [drawingStatus, setdrawingState] = useState(false);
-   
+
     function setdrawing(e) {
         if (drawingStatus === true) {
-           const canvas = canvasRef.current;
+            const canvas = canvasRef.current;
             let ctx = canvas.getContext("2d");
             const { offsetX, offsetY } = e.nativeEvent;
             ctx.lineTo(offsetX, offsetY);
@@ -22,10 +22,11 @@ function DrawingApp({ selectedColor }) {
         const { offsetX, offsetY } = e.nativeEvent;
         ctx.beginPath();
         ctx.strokeStyle = selectedColor;
+        ctx.lineWidth = strokeSize;
         ctx.moveTo(offsetX, offsetY);
-       
+
     }
-    
+
     function setUp() {
         setdrawingState(false);
     }
