@@ -28,25 +28,35 @@ function ColorPlate({selectedColor, setSelectedColor, strokeSize, setStrokeSize 
             <div style={{ display: "inline-block" }} className="color-plate">
                 {colors.map((color, index) => <div className="col" key={index} style={selectedColor === colors[index] ? {
                     background: color,
-                    height: "45px",
-                    width: "45px",
+                    height: "1.8rem",
+                    width: "1.8rem",
                     borderRadius: "10px",
                     marginBottom: "2px",
                     border: "4px solid rgba(255, 255, 255, 0.45)",
 
                 } : {
                     background: color,
-                    height: "50px",
-                    width: "50px",
+                    height: "2rem",
+                    width: "2rem",
                     borderRadius: "10px",
                     marginBottom: "2px",
 
                 }}
                     onClick={(e) => handleColorClick(e, index)}
                 >
-
+                
                 </div>)}
-
+                <div style={{border: "4px solid rgba(255, 255, 255, 0.45)",
+                background:"blue",
+                    height: "4rem",
+                    width: "2rem",
+                    borderRadius: "10px",
+                    marginBottom: "2px",}}>
+            <input type="color" style={{height:"1.8rem", width:"1.8rem", border:"noen"}}></input>
+            <button style={{border:"none",
+                fontSize:"1rem"
+            }}>+</button>
+            </div>
             </div>
 
             <div style={{ display: "inline-block" }} className="stroke-plate">
