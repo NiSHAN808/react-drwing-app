@@ -51,16 +51,32 @@ function ColorPlate({ selectedColor, setSelectedColor, strokeSize, setStrokeSize
                 </div>)}
                 <div style={{
                     border: "4px solid rgba(255, 255, 255, 0.45)",
-                    background: "blue",
-                    height: "4rem",
+                    background: "#ffffff",
+                    height: "3.6rem",
                     width: "2rem",   // ik its terrable gonna optimize latter
                     borderRadius: "10px",
-                    marginBottom: "2px",
+                    marginBottom: "2px",   border:"solid 1px #1010108f",
+                    display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        flexDirection: "column",
+                        margin: "0px",
+                        padding: "5px",
                 }}>
-                    <input ref={newColor} type="color" style={{ height: "1.8rem", width: "1.8rem", border: "noen" }}></input>
+                    <input ref={newColor} type="color" style={{ height: "1.8rem",
+                         width: "1.8rem", 
+                         borderRadius:"0.5rem",
+                         padding: "0px",
+                          appearance: "none",
+                           border:"none"}}></input>
                     <button onClick={handleAddColorClick} style={{
                         border: "none",
-                        fontSize: "1rem"
+                        fontSize: "1rem",
+                        height: "1.8rem",
+                        width: "1.8rem",
+                        background: "blue",
+                        borderRadius:"0.5rem",
+                    
                     }}>+</button>
                 </div>
             </div>
