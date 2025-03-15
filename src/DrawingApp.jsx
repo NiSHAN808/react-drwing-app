@@ -2,53 +2,53 @@ import React, { useState, useRef, } from "react";
 
 function DrawingApp({ selectedColor, strokeSize }) {
 
-function handleSaveClick (){
- localStorage.setItem("strokeDataX",JSON.stringify(strokeDataX));
- localStorage.setItem("strokeDataY",JSON.stringify(strokeDataY));
-}
-function handleSaveFetch(){
-    let fetchDataX=JSON.parse(localStorage.getItem("strokeDataX"));
-    let fetchDataY=JSON.parse(localStorage.getItem("strokeDataY"));
-    const canvas = canvasRef.current;
-        let ctx = canvas.getContext("2d");
-       console.log(fetchDataX.current); console.log((fetchDataY.current[12])===null);
-      // ctx.moveTo(null, null); 
-    for(let i=0 ;i<fetchDataX.current.length-1; i++){
-        
-       
-       
-          
-      if(fetchDataX.current[i] === null){   // ctx.beginPath();
-        ctx.moveTo(fetchDataX.current[i+1], fetchDataY.current[i+1]);
-       console.log("null");
-         continue;
-      } console.log("null 2");
-        ctx.lineTo(fetchDataX.current[i], fetchDataY.current[i]);
-        ctx.stroke();
+    function handleSaveClick() {
+        localStorage.setItem("strokeDataX", JSON.stringify(strokeDataX));
+        localStorage.setItem("strokeDataY", JSON.stringify(strokeDataY));
     }
-}
-let strokeDataX =useRef([]); let strokeDataY =useRef([]);
-let strokeCount =useRef(0);
-    let canvasRef = useRef(null);
+    function handleFetchClick() {
+        let fetchDataX = JSON.parse(localStorage.getItem("strokeDataX"));
+        let fetchDataY = JSON.parse(localStorage.getItem("strokeDataY"));
+
+        const canvas = canvasRef.current;
+        let ctx = canvas.getContext("2d");
+
+
+
+        for (let i = 0; i < fetchDataX.current.length - 1; i++) {
+
+            if (fetchDataX.current[i] === null) {
+                ctx.beginPath();
+                ctx.moveTo(fetchDataX.current[i + 1], fetchDataY.current[i + 1]);
+              
+                continue;                       // can we optimize one extra line of for loop execution
+            } 
+
+
+            ctx.lineTo(fetchDataX.current[i], fetchDataY.current[i]);
+            ctx.stroke();
+        }
+    }
+
+
+    let strokeDataX = useRef([]); let strokeDataY = useRef([]);
+     let canvasRef = useRef(null);
     let [drawingStatus, setdrawingState] = useState(false);
 
     function setdrawing(e) {
         if (drawingStatus === true) {
-       
+
             const canvas = canvasRef.current;
             let ctx = canvas.getContext("2d");
-            const { offsetX, offsetY } = e.nativeEvent; 
-              strokeDataX.current.push(offsetX); 
-              strokeDataY.current.push(offsetY);
-              
-
-
+            const { offsetX, offsetY } = e.nativeEvent;
+            strokeDataX.current.push(offsetX);
+            strokeDataY.current.push(offsetY);
             ctx.lineTo(offsetX, offsetY);
             ctx.stroke();
         }
     }
 
-    function setDown(e) { 
+    function setDown(e) {
         setdrawingState(true)
         const canvas = canvasRef.current;
         let ctx = canvas.getContext("2d");
@@ -62,8 +62,8 @@ let strokeCount =useRef(0);
 
     function setUp() {
         setdrawingState(false);
-         strokeDataX.current.push(null); 
-         strokeDataY.current.push(null); 
+        strokeDataX.current.push(null);
+        strokeDataY.current.push(null);
     }
     return (
         <>
@@ -72,8 +72,8 @@ let strokeCount =useRef(0);
                 onMouseDown={setDown}
                 onMouseUp={setUp}
             />
-      <button onClick={handleSaveClick}>SaVe</button>
-      <button onClick={handleSaveFetch}>Fetch</button>
+            <button onClick={handleSaveClick}>SaVe</button>
+            <button onClick={handleFetchClick}>Fetch</button>
         </>
     )
 }
