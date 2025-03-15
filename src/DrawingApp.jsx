@@ -11,16 +11,18 @@ function handleSaveFetch(){
     let fetchDataY=JSON.parse(localStorage.getItem("strokeDataY"));
     const canvas = canvasRef.current;
         let ctx = canvas.getContext("2d");
-       console.log(fetchDataX); console.log(fetchDataY);
+       console.log(fetchDataX.current); console.log((fetchDataY.current[12])===null);
       // ctx.moveTo(null, null); 
     for(let i=0 ;i<fetchDataX.current.length-1; i++){
         
        
        
           
-      if(fetchDataX.current === null){   // ctx.beginPath();
-        ctx.moveTo(fetchDataX.current[i+1], fetchDataY.current[i+1]); continue;
-      }
+      if(fetchDataX.current[i] === null){   // ctx.beginPath();
+        ctx.moveTo(fetchDataX.current[i+1], fetchDataY.current[i+1]);
+       console.log("null");
+         continue;
+      } console.log("null 2");
         ctx.lineTo(fetchDataX.current[i], fetchDataY.current[i]);
         ctx.stroke();
     }
