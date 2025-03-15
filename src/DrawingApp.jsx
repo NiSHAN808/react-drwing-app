@@ -5,22 +5,30 @@ function DrawingApp({ selectedColor, strokeSize }) {
     function handleSaveClick() {
         localStorage.setItem("strokeDataX", JSON.stringify(strokeDataX));
         localStorage.setItem("strokeDataY", JSON.stringify(strokeDataY));
+        localStorage.setItem("strokeColorWidth", JSON.stringify(strokeColorWidth));
     }
     function handleFetchClick() {
         let fetchDataX = JSON.parse(localStorage.getItem("strokeDataX"));
         let fetchDataY = JSON.parse(localStorage.getItem("strokeDataY"));
+        let fetchColorWidth = JSON.parse(localStorage.getItem("strokeColorWidth"));
 
         const canvas = canvasRef.current;
         let ctx = canvas.getContext("2d");
+    
 
 
 
+ctx.strokeStyle = fetchColorWidth.current[0].color;
+ctx.lineWidth = fetchColorWidth.current[0].width;
+let strokeNumber= 1;    // i am confuse shound i native variable in react or not
         for (let i = 0; i < fetchDataX.current.length - 1; i++) {
 
             if (fetchDataX.current[i] === null) {
                 ctx.beginPath();
                 ctx.moveTo(fetchDataX.current[i + 1], fetchDataY.current[i + 1]);
-              
+                ctx.strokeStyle = fetchColorWidth.current[strokeNumber].color;
+                ctx.lineWidth = fetchColorWidth.current[strokeNumber].width;
+                strokeNumber++;
                 continue;                       // can we optimize one extra line of for loop execution
             } 
 
@@ -31,7 +39,7 @@ function DrawingApp({ selectedColor, strokeSize }) {
     }
 
 
-    let strokeDataX = useRef([]); let strokeDataY = useRef([]);
+    let strokeDataX = useRef([]); let strokeDataY = useRef([]);   let strokeColorWidth= useRef([]);   console.log(strokeColorWidth.current)
      let canvasRef = useRef(null);
     let [drawingStatus, setdrawingState] = useState(false);
 
@@ -58,6 +66,8 @@ function DrawingApp({ selectedColor, strokeSize }) {
         ctx.lineWidth = strokeSize;
         ctx.moveTo(offsetX, offsetY);
 
+
+      strokeColorWidth.current.push({color:selectedColor, width:strokeSize})
     }
 
     function setUp() {
